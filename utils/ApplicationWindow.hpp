@@ -6,7 +6,7 @@ public:
 	ApplicationWindow(char* title, int width, int height, SDL_WindowFlags flags);
 	~ApplicationWindow();
 
-	typedef enum AppStatusEnum {
+	enum AppStatusEnum {
 		APPLICATION_CONTINUE,
 		APPLICATION_END
 	};

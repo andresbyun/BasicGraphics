@@ -32,8 +32,6 @@ void ApplicationWindow::Loop(AppStatusEnum(*eventHandlerCallback)(SDL_Event*), v
 	Uint64 prevTime = 0, deltaTime = 0;
 	int fps = 0;	// Frames Per Second
 
-	SDL_RenderClear(aRenderer);	// Clear renderer
-
 	while (aRunning) {
 		Uint64 currTime = SDL_GetTicks();
 		deltaTime = currTime - prevTime;
@@ -43,7 +41,7 @@ void ApplicationWindow::Loop(AppStatusEnum(*eventHandlerCallback)(SDL_Event*), v
 			aRunning = false;
 		}
 
-		// Draw the next frame as long as we haven't hit the frame caps
+		// Draw the next frame as long as we haven't hit the frame cap
 		if (fps < FRAME_CAP) {
 			iterateCallback(aRenderer);
 			fps++;
@@ -57,6 +55,4 @@ void ApplicationWindow::Loop(AppStatusEnum(*eventHandlerCallback)(SDL_Event*), v
 			fps = 0; // Reset the fps counter
 		}
 	}
-
-	return;
 }
