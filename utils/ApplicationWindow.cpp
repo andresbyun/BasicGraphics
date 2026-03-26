@@ -29,6 +29,7 @@ void ApplicationWindow::Loop(AppStatusEnum(*eventHandlerCallback)(SDL_Event*), v
 
 	while (ApplicationWindow::aRunning) {
 		Uint64 currTime = SDL_GetTicks();
+		deltaTime = currTime - prevTime;
 
 		// Keep running the loop until the event handler returns APPLICATION_END
 		if (eventHandlerCallback(&event) == APPLICATION_END) {
@@ -41,7 +42,6 @@ void ApplicationWindow::Loop(AppStatusEnum(*eventHandlerCallback)(SDL_Event*), v
 			fps++;
 		}
 
-		deltaTime = currTime - prevTime;
 		if (deltaTime >= ONE_SECOND) {
 			prevTime = currTime;	// Set previous time to the current time
 
