@@ -1,3 +1,6 @@
+#define ONE_SECOND 1000	// One second in milliseconds
+#define FRAME_CAP 60	// Max fps
+
 #include "ApplicationWindow.hpp"
 
 ApplicationWindow::ApplicationWindow(char* title, int width, int height, SDL_WindowFlags flags) :
@@ -21,8 +24,8 @@ ApplicationWindow::~ApplicationWindow() {
 // Main loop of the application
 void ApplicationWindow::Loop(AppStatusEnum(*eventHandlerCallback)(SDL_Event*), void(*iterateCallback)()) {
 	SDL_Event event;
-	int prevTime = 0, frames = 0;
-	const int ONE_SECOND = 1000;
+	Uint64 prevTime = 0, deltaTime = 0;
+	int fps = 0;	// Frames Per Second
 
 	while (ApplicationWindow::aRunning) {
 		Uint64 currTime = SDL_GetTicks();
@@ -32,16 +35,19 @@ void ApplicationWindow::Loop(AppStatusEnum(*eventHandlerCallback)(SDL_Event*), v
 			ApplicationWindow::aRunning = false;
 		}
 
-		// Draw the next frame
-		iterateCallback();
-		frames++;
+		// Draw the next frame as long as we haven't hit the frame caps
+		if (fps < FRAME_CAP) {
+			iterateCallback();
+			fps++;
+		}
 
-		if (currTime > prevTime + ONE_SECOND) {
-			prevTime = currTime;
+		deltaTime = currTime - prevTime;
+		if (deltaTime >= ONE_SECOND) {
+			prevTime = currTime;	// Set previous time to the current time
 
-			SDL_Log("FPS: %d\n", frames);
+			SDL_Log("FPS: %d\n", fps);
 
-			frames = 0;
+			fps = 0; // Reset the fps counter
 		}
 	}
 
