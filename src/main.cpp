@@ -14,7 +14,7 @@ static ApplicationWindow::AppStatusEnum eventHandler(SDL_Event* event) {
 }
 
 void iterate() {
-	// TODO: Add a fps counter
+	// TODO
 }
 
 int main(int argc, char** argv) {

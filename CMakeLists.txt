@@ -7,7 +7,7 @@ project ("BasicSimulatorApp")
 # Add source to this project's executable.
 add_executable (${PROJECT_NAME} "src/main.cpp")
 
-add_subdirectory(BasicSimulator)
+add_subdirectory(utils)
 target_link_libraries(${PROJECT_NAME} PRIVATE BasicSimLib)
 
 find_package(SDL3 CONFIG REQUIRED)

@@ -21,12 +21,28 @@ ApplicationWindow::~ApplicationWindow() {
 // Main loop of the application
 void ApplicationWindow::Loop(AppStatusEnum(*eventHandlerCallback)(SDL_Event*), void(*iterateCallback)()) {
 	SDL_Event event;
+	int prevTime = 0, frames = 0;
+	const int ONE_SECOND = 1000;
 
 	while (ApplicationWindow::aRunning) {
+		Uint64 currTime = SDL_GetTicks();
+
+		// Keep running the loop until the event handler returns APPLICATION_END
 		if (eventHandlerCallback(&event) == APPLICATION_END) {
 			ApplicationWindow::aRunning = false;
 		}
+
+		// Draw the next frame
 		iterateCallback();
+		frames++;
+
+		if (currTime > prevTime + ONE_SECOND) {
+			prevTime = currTime;
+
+			SDL_Log("FPS: %d\n", frames);
+
+			frames = 0;
+		}
 	}
 
 	return;
