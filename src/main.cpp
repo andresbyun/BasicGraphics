@@ -13,12 +13,13 @@ static ApplicationWindow::AppStatusEnum eventHandler(SDL_Event* event) {
 	return ApplicationWindow::APPLICATION_CONTINUE;
 }
 
-void iterate() {
+void iterate(SDL_Renderer* renderer) {
 	// TODO
 }
 
 int main(int argc, char** argv) {
-	ApplicationWindow app("My window", 640, 480, SDL_WINDOW_RESIZABLE);
+	int width = 640, height = 480;	// Window dimensions
+	ApplicationWindow app("My window", width, height, SDL_WINDOW_RESIZABLE);
 
 	app.Loop(eventHandler, iterate);
 

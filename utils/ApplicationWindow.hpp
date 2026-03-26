@@ -11,10 +11,11 @@ public:
 		APPLICATION_END
 	};
 
-	void Loop(AppStatusEnum(*eventHandlerCallback)(SDL_Event*), void(*iterateCallback)());
+	void Loop(AppStatusEnum(*eventHandlerCallback)(SDL_Event*), void(*iterateCallback)(SDL_Renderer*));
 
 private:
 	// Fields : they have the `a` prefix to distinguish them as a part of "application"
-	SDL_Window* aWindow;	// SDL window instance
-	bool aRunning;			// Condition for the main loop
+	SDL_Window* aWindow;		// SDL window instance
+	SDL_Renderer* aRenderer;	// SDL renderer instance
+	bool aRunning;				// Condition for the main loop
 };
