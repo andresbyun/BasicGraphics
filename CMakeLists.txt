@@ -2,13 +2,11 @@
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-project ("BasicSimulatorApp")
+project ("BasicGraphicsApp")
 
-# Add source to this project's executable.
-add_executable (${PROJECT_NAME} "src/main.cpp")
+file(GLOB CURR_DIR "examples/*.cpp")
+
+add_executable (${PROJECT_NAME} "examples/00_color_screen.cpp")
 
 add_subdirectory(utils)
-target_link_libraries(${PROJECT_NAME} PRIVATE BasicSimLib)
-
-find_package(SDL3 CONFIG REQUIRED)
-target_link_libraries(${PROJECT_NAME} PRIVATE SDL3::SDL3)
+target_link_libraries(${PROJECT_NAME} PRIVATE BasicGraphics)

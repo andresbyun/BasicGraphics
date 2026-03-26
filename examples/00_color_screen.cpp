@@ -14,7 +14,10 @@ static ApplicationWindow::AppStatusEnum eventHandler(SDL_Event* event) {
 }
 
 void iterate(SDL_Renderer* renderer) {
-	// TODO
+	SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0xBB, 0xFF);
+	SDL_RenderClear(renderer);
+
+	SDL_RenderPresent(renderer);
 }
 
 int main(int argc, char** argv) {
