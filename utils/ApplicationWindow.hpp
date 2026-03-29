@@ -11,7 +11,23 @@ public:
 		APPLICATION_END
 	};
 
-	void Loop(AppStatusEnum(*eventHandlerCallback)(SDL_Event*), void(*iterateCallback)(SDL_Renderer*));
+	/*	EventHandler:
+	 *	Callback for the event handler.
+	 *	The first argument is the state of the application used to communicate between the event handler and the render handler.
+	 */
+	typedef AppStatusEnum(*EventHandler)(void** appState, SDL_Event* eventHandler);
+
+	/*	RenderHandler:
+	 *	Callback for the render handler.
+	 *	The first argument is the state of the application used to communicate between the event handler and the render handler.
+	 */
+	typedef void(*RenderHandler)(void** appState, SDL_Renderer* renderHandler);
+
+	/*	Loop:
+	 *	This is the main loop of the application.
+	 *	We pass down the application state, the event handler, and a render handler.
+	 */
+	void Loop(void** appState, EventHandler eventHandler, RenderHandler renderHandler);
 
 private:
 	// Fields : they have the `a` prefix to distinguish them as a part of "application"

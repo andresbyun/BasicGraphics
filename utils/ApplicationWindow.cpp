@@ -27,7 +27,7 @@ ApplicationWindow::~ApplicationWindow() {
 }
 
 // Main loop of the application
-void ApplicationWindow::Loop(AppStatusEnum(*eventHandlerCallback)(SDL_Event*), void(*iterateCallback)(SDL_Renderer*)) {
+void ApplicationWindow::Loop(void** appState, EventHandler eventHandlerCallback, RenderHandler renderHandlerCallback) {
 	SDL_Event event;
 	Uint64 prevTime = 0, deltaTime = 0;
 	int fps = 0;	// Frames Per Second
@@ -37,13 +37,13 @@ void ApplicationWindow::Loop(AppStatusEnum(*eventHandlerCallback)(SDL_Event*), v
 		deltaTime = currTime - prevTime;
 
 		// Keep running the loop until the event handler returns APPLICATION_END
-		if (eventHandlerCallback(&event) == APPLICATION_END) {
+		if (eventHandlerCallback(appState, &event) == APPLICATION_END) {
 			aRunning = false;
 		}
 
 		// Draw the next frame as long as we haven't hit the frame cap
 		if (fps < FRAME_CAP) {
-			iterateCallback(aRenderer);
+			renderHandlerCallback(appState, aRenderer);
 			fps++;
 		}
 
