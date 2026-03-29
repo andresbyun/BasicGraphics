@@ -10,3 +10,6 @@ add_executable (${PROJECT_NAME} "examples/00_color_screen.cpp")
 
 add_subdirectory(utils)
 target_link_libraries(${PROJECT_NAME} PRIVATE BasicGraphics)
+
+find_package(glm CONFIG REQUIRED)
+target_link_libraries(${PROJECT_NAME} PRIVATE glm::glm-header-only)
