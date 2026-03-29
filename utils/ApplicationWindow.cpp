@@ -1,7 +1,7 @@
-#define ONE_SECOND 1000	// One second in milliseconds
-#define FRAME_CAP 60	// Max fps
-
 #include "ApplicationWindow.hpp"
+
+constexpr int ONE_SECOND = 1000;	// One second in milliseconds
+constexpr int FRAME_CAP = 60;		// Max fps
 
 ApplicationWindow::ApplicationWindow(char* title, int width, int height, SDL_WindowFlags flags) :
 	aWindow(nullptr), aRenderer(nullptr), aRunning(true)
