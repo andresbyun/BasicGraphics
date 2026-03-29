@@ -1,15 +1,17 @@
 ﻿cmake_minimum_required (VERSION 3.10)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_TOOLCHAIN_FILE $ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake CACHE STRING "VCPKG toolchain file")
 
-project ("BasicGraphicsApp")
+project ("BasicGraphics" VERSION 0.1.0 DESCRIPTION "Simple computer graphics project using SDL3")
 
-file(GLOB CURR_DIR "examples/*.cpp")
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
 
-add_executable (${PROJECT_NAME} "examples/00_color_screen.cpp")
+file(GLOB CURR_DIR_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
+add_library(${PROJECT_NAME} SHARED ${CURR_DIR_SRC})
 
-add_subdirectory(utils)
-target_link_libraries(${PROJECT_NAME} PRIVATE BasicGraphics)
+find_package(SDL3 CONFIG REQUIRED)
+target_link_libraries(${PROJECT_NAME} PUBLIC SDL3::SDL3)
 
 find_package(glm CONFIG REQUIRED)
-target_link_libraries(${PROJECT_NAME} PRIVATE glm::glm-header-only)
+target_link_libraries(${PROJECT_NAME} PUBLIC glm::glm-header-only)
