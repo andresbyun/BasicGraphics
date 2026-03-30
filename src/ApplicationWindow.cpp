@@ -1,10 +1,11 @@
-#include <Window.hpp>
+#include <ApplicationWindow.hpp>
+
 using namespace BasicGraphics;
 
 constexpr int ONE_SECOND = 1000;	// One second in milliseconds
 constexpr int FRAME_CAP = 60;		// Max fps
 
-Window::Window(char* title, int width, int height, SDL_WindowFlags flags) :
+ApplicationWindow::ApplicationWindow(char* title, int width, int height, SDL_WindowFlags flags) :
 	aWindow(nullptr), aRenderer(nullptr), aRunning(true)
 {
 	if (!SDL_Init(SDL_INIT_VIDEO)) {
@@ -20,7 +21,7 @@ Window::Window(char* title, int width, int height, SDL_WindowFlags flags) :
 	}
 }
 
-Window::~Window() {
+ApplicationWindow::~ApplicationWindow() {
 	// Clean up
 	SDL_DestroyRenderer(aRenderer);
 	SDL_DestroyWindow(aWindow);
@@ -28,7 +29,7 @@ Window::~Window() {
 }
 
 // Main loop of the application
-void Window::Loop(EventHandler eventHandlerCallback, RenderHandler renderHandlerCallback) {
+void ApplicationWindow::Loop(EventHandler eventHandlerCallback, RenderHandler renderHandlerCallback) {
 	SDL_Event event;
 	Uint64 prevTime = 0, deltaTime = 0;
 	int fps = 0;	// Frames Per Second

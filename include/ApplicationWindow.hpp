@@ -2,15 +2,15 @@
 #include <SDL3/SDL.h>
 
 namespace BasicGraphics {
-	class Window {
+	enum AppStatusEnum {
+		APPLICATION_CONTINUE,
+		APPLICATION_END
+	};
+	class ApplicationWindow {
 	public:
-		Window(char* title, int width, int height, SDL_WindowFlags flags);
-		~Window();
+		ApplicationWindow(char* title, int width, int height, SDL_WindowFlags flags);
+		~ApplicationWindow();
 
-		enum AppStatusEnum {
-			APPLICATION_CONTINUE,
-			APPLICATION_END
-		};
 
 		/*	EventHandler:
 		 *	Callback for the event handler.
