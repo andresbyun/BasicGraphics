@@ -1,6 +1,11 @@
 {
   "dependencies": [
-    "sdl3",
-    "glm"
+    "glm",
+    {
+      "name": "sdl3",
+      "features": [
+        "vulkan"
+      ]
+    }
   ]
 }
