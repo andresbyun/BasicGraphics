@@ -7,3 +7,9 @@ This project is built with CMake and vcpkg.
 ## Libraries used
 * SDL3
 * GLM
+
+## Resources used:
+* [SDL Tutorials](https://wiki.libsdl.org/SDL3/Tutorials)
+* [SDL Renderer](https://examples.libsdl.org/SDL3/renderer/01-clear/)
+* [Learn OpenGL](https://learnopengl.com/)
+
