@@ -11,7 +11,6 @@ namespace BasicGraphics {
 		ApplicationWindow(char* title, int width, int height, SDL_WindowFlags flags);
 		~ApplicationWindow();
 
-
 		/*	EventHandler:
 		 *	Callback for the event handler.
 		 */
